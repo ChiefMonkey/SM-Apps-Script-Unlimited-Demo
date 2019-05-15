@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<?!= include('CSSOverride'); ?>
+<html>
+  <head>
+    <base target="_top">
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- begin Crisp chat code-->
+        <script type="text/javascript">
+        window.$crisp=[];
+        window.CRISP_WEBSITE_ID="d1aa7f3b-a724-47d8-907f-8fa569526cba";
+        (function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";
+        s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+        </script>
+        <!-- end Crisp chat code-->
+        <!--script on load chat actions-->
+        <script>
+          $crisp.push(["do", "chat:hide"]));
+        </script>
+        <!--script on load chat actions-->  
+  </head>
+  <body>
+    <!--start body-->
+    <div class="container">
+      <div class="spacer"></div>
+        <div class="row">
+          <div class="col s6 valign-wrapper">
+            <h4 class="valign left-align">Get Help</h4>
+          </div>
+          <div class="col s6 right-align">
+            <img class="header-logo-image-sm" src="https://storage.googleapis.com/shoosh-monkey.appspot.com/sm-head-title-vstacked-blue-256.png">
+          </div>
+        </div>
+      <content>
+        <div class="container">
+          <div class="row">
+              <p>Demo our in app chat widget by clicking the <strong>LIVE CHAT</strong> button below</p>
+              <br>
+              <p>For more information on how you can get custom apps built for your G Suite service see our Apps Script UNLIMITED <a href="https://www.shooshmonkey.com/unlimited" target="_blank">website</a>. </p>
+            </div>
+           </div>
+      </content>
+        <footer>
+        <!--
+        <div class="arrow bounce">
+          <i class="material-icons">arrow_drop_down_circle</i>
+        </div>
+        -->
+        <div class="row" id="buttons">
+              <div class="col s6">
+                  <a class="waves-effect waves-light btn #41a9e4 blue left-align" id="chatButton">Live Chat</a>
+                </div>
+              <div class="col s5 left-align">
+                  <a class="waves-effect waves-light-grey btn-flat" onclick="google.script.host.close()">Cancel</a>
+              </div>
+        </div>
+      </footer>
+      </div><!--end container-->
+    <script type="text/javascript">
+      WebFont.load({
+        google: {
+          families: ["Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic"]
+        }
+      });
+    </script>
+    <!--end body-->
+    <!--Import jQuery before materialize.js-->
+    <!--Load JQuery-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    
+    <!-- invokes the chat bar to slide out-->
+    <script>
+    var emailAddress = null;
+    $('#chatButton').on('click', function(e) {
+        // Open Checkout with further options
+        if (emailAddress) {
+            $crisp.push(["set", "user:email", emailAddress]);
+        }
+        $crisp.push(["do", "chat:show"]);
+        $crisp.push(["do", "chat:open"]);
+        e.preventDefault();
+    });
+    
+     function setUserEmail(email){
+         emailAddress = email;
+         $crisp.push(["set", "user:email", email]);
+     }
+     //Call getUserEmail() on server, setUserEmail will handle the response so it will configure crisp
+     google.script.run.withSuccessHandler(setUserEmail).getUserEmail();
+     
+     //Register callback when closing chat, so it will hide the icon
+     $crisp.push(["on", "chat:closed", function(){
+         $crisp.push(["do", "chat:hide"]);
+     }]);
+     $crisp.push(["do", "chat:hide"]);
+    </script>
+  </body>
+</html>
