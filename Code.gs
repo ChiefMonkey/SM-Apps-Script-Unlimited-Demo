@@ -65,6 +65,7 @@ function openUrl( url ){
   SpreadsheetApp.getUi().showModalDialog( html, "Opening..." );
 }
 
+//Generic toast function
 function showToastMessage(toastMessage,toastTitle,toastDuration){
   SpreadsheetApp.getActiveSpreadsheet().toast(toastMessage, toastTitle, parseInt(toastDuration));
 }
