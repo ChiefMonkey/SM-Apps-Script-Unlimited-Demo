@@ -37,11 +37,6 @@ function loadingToast(){
  SpreadsheetApp.getActiveSpreadsheet().toast("Loading...","",3);
 }//progress toastie
 
-//get user email for chat window
-function getUserEmail(){
-  return Session.getActiveUser().getEmail();
-}
-
 //open Apps Script Unlimited website
 function openWebSite(){
   openUrl('https://shooshmonkey.com/unlimited');
